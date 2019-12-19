@@ -10,7 +10,7 @@
           <el-input v-model="formdata.code" placeholder="请输入验证码" class="code"></el-input>
           <el-button plain style="float:right">发送验证码</el-button>
         </el-form-item>
-        <el-form-item prop="agree">
+        <el-form-item prop="check">
           <el-checkbox v-model="formdata.check" class="check">我已阅读用户协议且同意上述条款</el-checkbox>
         </el-form-item>
         <el-form-item>
@@ -42,7 +42,7 @@ export default {
           { required: true, message: '请输入您的验证码' },
           { pattern: /^\d{6}$/, message: '验证码为6位数字' }
         ],
-        agree: [{ validator }]
+        check: [{ validator }]
       }
     }
   },
