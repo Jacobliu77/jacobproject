@@ -1,7 +1,11 @@
 <template>
-   <div class="homeindex">
-     <img src="../../assets/img/logo_admin.png" alt="">
-   </div>
+  <div class="homeindex">
+    <el-carousel height="300px" direction="vertical" :autoplay="true">
+      <el-carousel-item v-for="item in 3" :key="item">
+        <h3 class="medium">{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 
 <script>
@@ -9,15 +13,32 @@
 
 export default {
   name: 'home',
-  components: {
-  }
+  components: {}
 }
 </script>
 <style lang="less">
-  .homeindex{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.homeindex {
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
   }
+  .el-carousel__item:nth-child(1) {
+    background:url('../../assets/img/timga.jpg');
+    background-size: cover ;
+
+  }
+
+  .el-carousel__item:nth-child(2) {
+    background:url('../../assets/img/timgb.jpg');
+    background-size: cover;
+  }
+
+  .el-carousel__item:nth-child(3) {
+    background:url('../../assets/img/timgc.jpg');
+    background-size: cover;
+  }
+}
 </style>
