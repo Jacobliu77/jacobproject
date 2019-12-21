@@ -1,10 +1,10 @@
 <template>
   <div class="login">
     <el-card class="box-card">
-      <img src="../../assets/img/logo_index.png" alt />
+       <img src="../../assets/img/logo_admin.png"  style="height:60px;margin-left:40%" />
       <el-form ref="myForm" :model="formdata" :rules="loginRules">
-        <el-form-item prop="tel">
-          <el-input v-model="formdata.tel" placeholder="请输入手机号码" class="tel"></el-input>
+        <el-form-item prop="mobile">
+          <el-input v-model="formdata.mobile" placeholder="请输入手机号码" class="mobile"></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input v-model="formdata.code" placeholder="请输入验证码" class="code"></el-input>
@@ -25,16 +25,16 @@
 export default {
   data () {
     let validator = function (rule, value, callBack) {
-      value ? callBack() : callBack(new Error('您必须同意无条件被我们蒙骗')) // 炫技模式
+      value ? callBack() : callBack(new Error('您必须同意无条件被我们蒙骗'))
     }
     return {
       formdata: {
-        tel: '',
+        mobile: '',
         code: '',
         check: false
       },
       loginRules: {
-        tel: [
+        mobile: [
           { required: true, message: '请输入您的手机号' },
           { pattern: /^1[3456789]\d{9}$/, message: '请输入合法的手机号' }
         ],
@@ -48,9 +48,23 @@ export default {
   },
   methods: {
     login () {
-      this.$refs.myForm.validate(function (isOK) {
+      this.$refs.myForm.validate(isOK => {
         if (isOK) {
-          console.log('校验成功')
+          this.$axios({
+            url: '/authorizations', // 请求地址 axios 没有指定 类型 默认走get类型
+            method: 'post', // 类型
+            data: this.formdata // body 参数
+          }).then(result => {
+            // 只接受正确结果
+            // 前端缓存 登录成功返回给我们的令牌
+            window.localStorage.setItem('user-token', result.data.data.token)
+            this.$router.push('/home')
+          }).catch(() => {
+            this.$message({
+              type: 'warning',
+              message: '手机号或者验证码错误!'
+            })
+          })
         }
       })
     }
@@ -68,7 +82,7 @@ export default {
   align-items: center;
   .box-card {
     width: 440px;
-    height: 320px;
+    height: 350px;
     opacity: 0.9;
     img {
       height: 40px;

@@ -1,5 +1,7 @@
 <template>
-  <div>首页</div>
+   <div class="homeindex">
+     <img src="../../assets/img/logo_admin.png" alt="">
+   </div>
 </template>
 
 <script>
@@ -11,3 +13,11 @@ export default {
   }
 }
 </script>
+<style lang="less">
+  .homeindex{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
