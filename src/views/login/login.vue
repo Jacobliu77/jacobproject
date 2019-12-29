@@ -50,20 +50,16 @@ export default {
     login () {
       this.$refs.myForm.validate(isOK => {
         if (isOK) {
+          // console.log(1)
           this.$axios({
             url: '/authorizations', // 请求地址 axios 没有指定 类型 默认走get类型
             method: 'post', // 类型
             data: this.formdata // body 参数
-          }).then(result => {
+          }).then(res => {
             // 只接受正确结果
             // 前端缓存 登录成功返回给我们的令牌
-            window.localStorage.setItem('user-token', result.data.data.token)
+            window.localStorage.setItem('user-token', res.data.token)
             this.$router.push('/home')
-          }).catch(() => {
-            this.$message({
-              type: 'warning',
-              message: '手机号或者验证码错误!'
-            })
           })
         }
       })

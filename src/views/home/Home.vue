@@ -2,9 +2,10 @@
   <div class="homeindex">
     <el-carousel height="300px" direction="vertical" :autoplay="true">
       <el-carousel-item v-for="item in 3" :key="item">
-        <h3 class="medium">{{ item }}</h3>
+        <!-- <h3 class="medium">{{ item }}</h3> -->
       </el-carousel-item>
     </el-carousel>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1404503996&auto=1&height=66"></iframe>
   </div>
 </template>
 
@@ -26,18 +27,17 @@ export default {
     margin: 0;
   }
   .el-carousel__item:nth-child(1) {
-    background:url('../../assets/img/timga.jpg');
-    background-size: cover ;
-
+    background: url("../../assets/img/timga.jpg");
+    background-size: cover;
   }
 
   .el-carousel__item:nth-child(2) {
-    background:url('../../assets/img/timgb.jpg');
+    background: url("../../assets/img/timgb.jpg");
     background-size: cover;
   }
 
   .el-carousel__item:nth-child(3) {
-    background:url('../../assets/img/timgc.jpg');
+    background: url("../../assets/img/timgc.jpg");
     background-size: cover;
   }
 }

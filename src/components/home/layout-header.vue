@@ -29,7 +29,8 @@
 export default {
   data () {
     return {
-      userInfo: {}, // 定义一个用户对象
+      userInfo: {
+      }, // 定义一个用户对象
       defaultImg: require('../../assets/img/loginpng.png') // 先将图片转化成了一个变量
     }
   },
@@ -42,14 +43,14 @@ export default {
         Authorization: `Bearer ${token}`
       }
     }).then(result => {
-      this.userInfo = result.data.data
+      this.userInfo = result.data
     })
   },
   methods: {
     //   点击菜单项时触发
     clickMenu (command) {
       if (command === 'info') {
-
+        this.$router.push('/home/userinfo') // 个人中心
       } else if (command === 'git') {
         //   跳转到git地址
         window.location.href = 'https://github.com/Jacobliu77/'

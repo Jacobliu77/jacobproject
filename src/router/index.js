@@ -13,14 +13,31 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'home',
     component: Home,
     children: [
       {
         path: '',
         component: homea
-      }
-    ]
+      }, {
+        path: 'comment', // 完整 相对
+        component: () => import('../views/comment')
+      }, {
+        path: 'material',
+        component: () => import('../views/material')
+      }, {
+        path: 'articles', // 文章列表
+        component: () => import('../views/articles')
+      }, {
+        path: 'publish', // 发布文章
+        component: () => import('../views/publish')
+      }, {
+        path: 'publish/:articleId', // 修改文章
+        component: () => import('../views/publish')
+      },
+      {
+        path: 'userinfo', // 修改文章
+        component: () => import('../views/account')
+      }]
   },
   {
     path: '/login',
