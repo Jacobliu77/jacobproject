@@ -32,6 +32,9 @@ axios.interceptors.response.use(function (response) {
     case 400:
       message = '请求参数错误'
       break
+    case 409:
+      message = '用户名已占用'
+      break
     case 507:
       message = '服务器数据库异常'
       break

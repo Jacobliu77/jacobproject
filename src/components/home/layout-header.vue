@@ -3,7 +3,7 @@
   <el-row class='layout-header' type='flex' align="middle">
       <!-- 先定义一行 -->
      <el-col class='left' :span="12">
-         <i class='el-icon-s-fold'></i>
+         <i  @click="forder" :class='{"el-icon-s-unfold":isCollapse,"el-icon-s-fold":!isCollapse}'></i>
          <span>热点资讯后台管理©华东交通大学</span>
      </el-col>
      <el-col class='right' :span="12">
@@ -21,32 +21,38 @@
              </el-dropdown>
          </el-row>
      </el-col>
-
   </el-row>
 </template>
-
 <script>
+import eventBus from '../../utils/eventBus'
 export default {
   data () {
     return {
+      isCollapse: false,
       userInfo: {
       }, // 定义一个用户对象
       defaultImg: require('../../assets/img/loginpng.png') // 先将图片转化成了一个变量
     }
   },
   created () {
-    let token = localStorage.getItem('user-token') // 获取用户令牌
-    this.$axios({
-      url: '/user/profile',
-      headers: {
-        //   headers参数
-        Authorization: `Bearer ${token}`
-      }
-    }).then(result => {
-      this.userInfo = result.data
+    this.getUserInfo()
+    eventBus.$on('updateUserInfo', () => {
+      // 认为别人更新了数据 自己也应该更新
+      this.getUserInfo()
     })
   },
   methods: {
+    forder () {
+      this.isCollapse = !this.isCollapse
+      eventBus.$emit('forderchange', this.isCollapse)
+    },
+    getUserInfo () {
+      this.$axios({
+        url: '/user/profile'
+      }).then(result => {
+        this.userInfo = result.data
+      })
+    },
     //   点击菜单项时触发
     clickMenu (command) {
       if (command === 'info') {

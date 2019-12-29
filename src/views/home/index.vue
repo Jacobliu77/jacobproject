@@ -1,7 +1,7 @@
 <template>
 <el-container>
     <!-- 左右布局 -->
-    <el-aside style="min-height:100vh;background-color:#353b4e;width:230px;">
+    <el-aside  :style="{width:isCollapse?'60px':'230px'}" style="transition: all 0.5s; min-height:100vh;background-color:#353b4e;">
       <layout-aside></layout-aside>
     </el-aside>
     <!-- 右侧容器 -->
@@ -20,9 +20,18 @@
 </template>
 
 <script>
-
+import eventBus from '../../utils/eventBus'
 export default {
-
+  data () {
+    return {
+      isCollapse: false
+    }
+  },
+  created () {
+    eventBus.$on('forderchange', status => {
+      this.isCollapse = status
+    })
+  }
 }
 
 </script>
