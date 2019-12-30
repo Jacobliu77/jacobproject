@@ -168,7 +168,6 @@ export default {
       this.getConditionArticle() // 调用获取文章数据
     },
     getConditionArticle () {
-      debugger
       let params = {
         page: this.page.currentPage,
         per_page: this.page.pageSize,
