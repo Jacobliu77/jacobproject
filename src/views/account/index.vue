@@ -21,7 +21,7 @@
         <el-input v-model="formData.email" style="width:40%"></el-input>
       </el-form-item>
       <el-form-item label="手机" prop="mobile">
-        <el-input v-model="formData.mobile" style="width:40%"></el-input>
+        <el-input v-model="formData.mobile" style="width:40%" disabled></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="saveUserInfo">提交</el-button>
